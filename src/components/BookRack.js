@@ -4,7 +4,7 @@ import "../App.css";
 
 class BookRack extends React.Component {
   render() {
-    const { title, books } = this.props;
+    const { title, books, bookCategory, updateCategory } = this.props;
     return (
       <div>
         <div className="bookshelf">
@@ -13,7 +13,11 @@ class BookRack extends React.Component {
             <ol className="books-grid">
               {books.map(book => (
                 <li key={book.id}>
-                  <Book book={book} />
+                  <Book
+                    book={book}
+                    bookCategory={bookCategory}
+                    updateCategory={updateCategory}
+                  />
                 </li>
               ))}
             </ol>

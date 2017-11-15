@@ -3,7 +3,9 @@ import "../App.css";
 
 class Book extends React.Component {
   render() {
-    const { book } = this.props;
+    const { book, bookCategory, updateCategory } = this.props;
+    let shelf = bookCategory(book.id);
+    console.log("inside book", shelf);
     return (
       <div className="book">
         <div className="book-top">
@@ -16,7 +18,10 @@ class Book extends React.Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select>
+            <select
+              value={shelf}
+              onChange={e => updateCategory(book, e.target.value)}
+            >
               <option value="none" disabled>
                 Move to...
               </option>
