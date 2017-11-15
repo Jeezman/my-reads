@@ -7,14 +7,24 @@ import BookList from "./components/BookList";
 
 class BooksApp extends React.Component {
   state = {
-    showSearchPage: false
+    books: []
   };
 
+  componentDidMount() {
+    BooksAPI.getAll().then(books =>
+      this.setState(state => ({
+        ...state,
+        books
+      }))
+    );
+  }
+
   render() {
+    const { books } = this.state;
     return (
       <div className="app">
         <Route exact path="/search" render={() => <SearchBook />} />
-        <Route exact path="/" render={() => <BookList />} />
+        <Route exact path="/" render={() => <BookList books={books} />} />
       </div>
     );
   }
